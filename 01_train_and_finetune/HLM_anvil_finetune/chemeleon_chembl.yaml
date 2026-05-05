@@ -1,27 +1,27 @@
 data:
-  anvil_dir: file:///home/ec2-user/permeability_models/multitask/all_endpoints_model
+  anvil_dir: file:///data1/choderaj/openadmet/xu/app-domain-exp/microsomal/models/baseline_ensemble
   cat_entry: null
   dropna: false
   input_col: OPENADMET_CANONICAL_SMILES
-  resource: ../../ChEMBL35_Caco2_permeability_multitask_atob_btoa_logD_mppb_final.parquet
+  resource: file:///data1/choderaj/openadmet/xu/app-domain-exp/microsomal/models/baseline_ensemble/../../train_data/train_baseline_001.csv
   target_cols:
-  - logD
-  - caco2_atob_LogPapp
-  - caco2_btoa_LogPapp
-  - mppb_LogUnbound
-  - hppb_LogUnbound
+  - LOG_CLint_HLM
+  - LOG_CLint_RLM
+  - LOG_CLint_MLM
   test_resource: null
   train_resource: null
   type: intake
   val_resource: null
 metadata:
-  authors: Maria A. Castellanos
+  authors: Cynthia Xu
   biotargets:
-  - Caco-2
+  - HLM
+  - RLM
+  - MLM
   build_number: 0
   description: basic regression using a ChemProp multitask task model
   driver: pytorch
-  email: maria.castellanos@omsf.io
+  email: cynthia.xu@omsf.io
   name: chemprop_pchembl
   tag: chemprop
   tags:
@@ -50,7 +50,7 @@ procedure:
       from_chemeleon: true
       mpnn_lr: 1e-4
       mpnn_weight_decay: 0
-      n_tasks: 5
+      n_tasks: 3
       reduce_lr_factor: 0.5
       reduce_lr_patience: 5
       scheduler: plateau
@@ -59,9 +59,9 @@ procedure:
   split:
     params:
       random_state: 42
-      test_size: 0.0
+      test_size: 0
       train_size: 1.0
-      val_size: 0.0
+      val_size: 0
     type: ShuffleSplitter
   train:
     params:
@@ -71,23 +71,11 @@ procedure:
       early_stopping_mode: min
       early_stopping_patience: 20
       gradient_clip_val: 0.5
-      max_epochs: 50
+      max_epochs: 100
       monitor_metric: val_loss
       use_wandb: false
-      wandb_project: chemeleon_permeability
+      wandb_project: demos
     type: LightningTrainer
   transform: null
 report:
-  eval:
-  - params: {}
-    type: RegressionMetrics
-  - params:
-      axes_labels:
-      - True LogPapp
-      - Predicted LogPapp
-      n_repeats: 1
-      n_splits: 1
-      pXC50: true
-      random_state: 42
-      title: Multitask True vs Predicted LogPapp on test set
-    type: PytorchLightningRepeatedKFoldCrossValidation
+  eval: []
