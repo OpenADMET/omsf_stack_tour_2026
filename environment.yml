@@ -4,7 +4,6 @@ channels:
 dependencies:
   - ase
   - boto3
-  - catboost
   - chemprop >= 2.1.1
   - codecov
   - datamol
@@ -43,6 +42,7 @@ dependencies:
   - xgboost
   - zarr >=3.0.0
   - pip:
+    - catboost
     - email-validator
     - phx-class-registry
     - tabpfn-extensions
