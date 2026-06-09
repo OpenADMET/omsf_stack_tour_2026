@@ -79,7 +79,8 @@ jobs:
           python -m pip install "git+https://github.com/JacksonBurns/neural-pairwise-regression.git"
           python -m pip install "git+https://github.com/OpenADMET/molfeat.git@main"
           python -m pip install git+https://github.com/OpenADMET/openadmet-models.git@main
-          python -m pip install nbmake pytest
+          python -m pip install nbmake pytest ipykernel
+          python -m ipykernel install --user --name oadmt_2026_demo --display-name "Python (oadmt_2026_demo)"
 
       - name: Verify openadmet import chain
         shell: bash -l {0}
@@ -108,5 +109,6 @@ jobs:
       - name: Run CPU demo notebook
         shell: bash -l {0}
         run: |
-          pytest --nbmake --nbmake-timeout=1200 --disable-warnings \
+          pytest --nbmake --nbmake-timeout=1200 --nbmake-kernel=oadmt_2026_demo \
+            --disable-warnings \
             01_train_and_finetune_CPU_demo/01_train_and_finetune.ipynb
