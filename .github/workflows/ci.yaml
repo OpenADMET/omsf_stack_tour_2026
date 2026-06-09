@@ -42,6 +42,7 @@ jobs:
           create-args: >-
             python=${{ matrix.python-version }}
             click
+            datamol
             fsspec
             intake
             intake-parquet
@@ -53,6 +54,8 @@ jobs:
             pandas
             pydantic
             rich
+            scikit-learn
+            scipy
             seaborn
             statsmodels
             tabulate
@@ -61,6 +64,7 @@ jobs:
         shell: bash -l {0}
         run: |
           python -m pip install phx-class-registry
+          python -m pip install "git+https://github.com/OpenADMET/molfeat.git@main"
           python -m pip install git+https://github.com/OpenADMET/openadmet-models.git@main
           python -m pip install nbmake pytest
 
