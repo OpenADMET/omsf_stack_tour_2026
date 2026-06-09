@@ -65,6 +65,17 @@ jobs:
           import json
           with open('01_train_and_finetune_CPU_demo/executed.ipynb') as f:
               nb = json.load(f)
+          print('=== Execution counts for all code cells ===')
+          for i, cell in enumerate(nb['cells']):
+              if cell['cell_type'] != 'code':
+                  continue
+              ec = cell.get('execution_count')
+              src = ''.join(cell['source'])[:60].replace('\n',' ')
+              outputs = cell.get('outputs', [])
+              out_types = [o.get('output_type') for o in outputs]
+              print(f'  cell[{i:2d}] exec={ec} outputs={out_types} src={repr(src)}')
+          print()
+          print('=== Cell errors ===')
           for i, cell in enumerate(nb['cells']):
               if cell['cell_type'] != 'code':
                   continue
