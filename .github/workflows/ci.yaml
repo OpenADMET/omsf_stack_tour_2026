@@ -44,10 +44,15 @@ jobs:
             click
             intake
             intake-parquet
+            joblib
+            loguru
             matplotlib
+            numpy
+            pandas
             rich
             seaborn
             statsmodels
+            tabulate
 
       - name: Install openadmet and pytest-nbmake
         shell: bash -l {0}
