@@ -39,7 +39,7 @@ procedure:
   model:
     freeze_weights:
       message_passing: true
-    param_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.json
+    param_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.json"
     params:
       batch_norm: false
       dropout: 0.25
@@ -53,7 +53,7 @@ procedure:
       reduce_lr_factor: 0.5
       reduce_lr_patience: 5
       scheduler: plateau
-    serial_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.pth
+    serial_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.pth"
     type: ChemPropModel
   split:
     params:
@@ -70,7 +70,7 @@ procedure:
       early_stopping_mode: min
       early_stopping_patience: 20
       gradient_clip_val: 0.5
-      max_epochs: 100
+      max_epochs: 1
       monitor_metric: val_loss
       use_wandb: false
       wandb_project: demos
