@@ -52,7 +52,40 @@ jobs:
         shell: bash -l {0}
         run: |
           cd 01_train_and_finetune_CPU_demo
-          papermill 01_train_and_finetune.ipynb /dev/null \
-            --no-report-mode \
+          papermill 01_train_and_finetune.ipynb executed.ipynb \
+            --log-output \
             --kernel python3 \
             --execution-timeout 1200
+        continue-on-error: true
+
+      - name: Show cell errors from executed notebook
+        shell: bash -l {0}
+        run: |
+          python -c "
+          import json
+          with open('01_train_and_finetune_CPU_demo/executed.ipynb') as f:
+              nb = json.load(f)
+          for i, cell in enumerate(nb['cells']):
+              if cell['cell_type'] != 'code':
+                  continue
+              errors = [o for o in cell.get('outputs', []) if o.get('output_type') == 'error']
+              if errors:
+                  print(f'=== Cell [{i}] error ===')
+                  print('Source:', ''.join(cell['source'])[:200])
+                  for e in errors:
+                      print(e.get('ename'), ':', e.get('evalue'))
+                      print(''.join(e.get('traceback', [])))
+                  print()
+          "
+
+      - name: Fail if notebook had errors
+        shell: bash -l {0}
+        run: |
+          python -c "
+          import json, sys
+          with open('01_train_and_finetune_CPU_demo/executed.ipynb') as f:
+              nb = json.load(f)
+          errors = [c for c in nb['cells'] if any(o.get('output_type')=='error' for o in c.get('outputs',[]))]
+          if errors:
+              sys.exit(1)
+          "
