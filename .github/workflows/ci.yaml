@@ -45,12 +45,10 @@ jobs:
       - name: Install pytest-nbmake
         shell: bash -l {0}
         run: |
-          python -m pip install nbmake pytest ipykernel
-          python -m ipykernel install --user --name oadmt_2026_demo
+          python -m pip install nbmake pytest
 
       - name: Run CPU demo notebook
         shell: bash -l {0}
         run: |
-          pytest --nbmake --nbmake-timeout=1200 --nbmake-kernel=oadmt_2026_demo \
-            --disable-warnings \
+          pytest --nbmake --nbmake-timeout=1200 --disable-warnings \
             01_train_and_finetune_CPU_demo/01_train_and_finetune.ipynb
