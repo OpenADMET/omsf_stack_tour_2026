@@ -1,6 +1,8 @@
 # OpenADMET — OMSF Conference 2026 Demo
 
 [![Logo](https://img.shields.io/badge/OSMF-OpenADMET-%23002f4a)](https://openadmet.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20604711.svg)](https://doi.org/10.5281/zenodo.20604711)
+
 
 
 Demo materials for the OpenADMET presentation at the OMSF Conference 2026.
