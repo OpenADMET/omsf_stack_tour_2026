@@ -46,7 +46,7 @@ jobs:
         shell: bash -l {0}
         run: |
           python -m pip install git+https://github.com/OpenADMET/openadmet-models.git@main
-          python -m pip install nbmake pytest
+          python -m pip install click nbmake pytest
 
       - name: Verify openadmet CLI
         shell: bash -l {0}
