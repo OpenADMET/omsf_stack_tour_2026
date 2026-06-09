@@ -3,30 +3,40 @@ channels:
   - conda-forge
 dependencies:
   - boto3
+  - catboost
   - chemprop >= 2.1.1
-  # - codecov
-  # - h5py
-  # - hyperopt
-  # - intake
-  # - intake-parquet
-  # - joblib
-  # - jupyterlab
-  # - loguru
-  # - matplotlib
-  # - numpy
-  # - pandas
-  # - pip
-  # - python >= 3.12,<3.14
-  # - pytorch
-  # - pytorch-lightning<=2.6.1
-  # - pytest
-  # - rdkit
-  # - rich
-  # - scikit-learn
-  # - seaborn
-  # - statsmodels
-  # # - tabpfn
-  # - tabulate
-  # - zarr >=3.0.0
+  - datamol
+  - h5py
+  - hyperopt
+  - intake
+  - intake-parquet
+  - joblib
+  - lightgbm
+  - loguru
+  - matplotlib
+  - mordredcommunity
+  - numpy
+  - pandas
+  - pip
+  - python >= 3.12,<3.14
+  - pytorch
+  - pytorch-lightning
+  - rdkit
+  - rich
+  - scikit-learn
+  - scipy
+  - seaborn
+  - splito
+  - statsmodels
+  - tabulate
+  - xgboost
   - pip:
+    - click
+    - email-validator
+    - phx-class-registry
+    - tabpfn-extensions
+    - git+https://github.com/PriorLabs/TabPFN.git@main
+    - git+https://github.com/JacksonBurns/neural-pairwise-regression.git
+    - git+https://github.com/OpenADMET/molfeat.git@main
     - git+https://github.com/OpenADMET/openadmet-models.git@main
+    - setuptools <82.0.0
