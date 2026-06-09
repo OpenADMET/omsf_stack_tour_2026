@@ -41,32 +41,63 @@ jobs:
               - conda-forge
           create-args: >-
             python=${{ matrix.python-version }}
+            catboost
             click
             datamol
             fsspec
+            h5py
+            hyperopt
             intake
             intake-parquet
             jinja2
             joblib
+            lightgbm
             loguru
             matplotlib
+            mordredcommunity
             numpy
             pandas
+            pyarrow
             pydantic
+            rdkit
             rich
             scikit-learn
             scipy
             seaborn
+            splito
             statsmodels
             tabulate
+            xgboost
 
       - name: Install openadmet and pytest-nbmake
         shell: bash -l {0}
         run: |
+          python -m pip install "setuptools<82.0.0"
           python -m pip install phx-class-registry email-validator
+          python -m pip install tabpfn-extensions
+          python -m pip install "git+https://github.com/PriorLabs/TabPFN.git@main"
+          python -m pip install "git+https://github.com/JacksonBurns/neural-pairwise-regression.git"
           python -m pip install "git+https://github.com/OpenADMET/molfeat.git@main"
           python -m pip install git+https://github.com/OpenADMET/openadmet-models.git@main
           python -m pip install nbmake pytest
+
+      - name: Verify openadmet import chain
+        shell: bash -l {0}
+        run: |
+          python -c "
+          import traceback, sys
+          for label, stmt in [
+              ('molfeat.trans', 'from molfeat.trans import MoleculeTransformer'),
+              ('AnvilSpecification', 'from openadmet.models.anvil.specification import AnvilSpecification'),
+          ]:
+              try:
+                  exec(stmt)
+                  print(f'OK: {label}')
+              except Exception:
+                  print(f'FAILED: {label}')
+                  traceback.print_exc()
+                  sys.exit(1)
+          "
 
       - name: Verify openadmet CLI
         shell: bash -l {0}
