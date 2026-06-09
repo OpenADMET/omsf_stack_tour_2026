@@ -1,9 +1,8 @@
 data:
-  anvil_dir: file:///data1/choderaj/openadmet/xu/app-domain-exp/microsomal/models/baseline_ensemble
   cat_entry: null
   dropna: false
   input_col: OPENADMET_CANONICAL_SMILES
-  resource: ../data/exprx.csv
+  resource: "{{ANVIL_DIR}}/exprx.csv"
   target_cols:
   - LOG_CLint_HLM
   - LOG_CLint_RLM
@@ -40,7 +39,7 @@ procedure:
   model:
     freeze_weights:
       message_passing: true
-    param_path: chemeleon_chembl/model.json
+    param_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.json
     params:
       batch_norm: false
       dropout: 0.25
@@ -54,7 +53,7 @@ procedure:
       reduce_lr_factor: 0.5
       reduce_lr_patience: 5
       scheduler: plateau
-    serial_path: chemeleon_chembl/model.pth
+    serial_path: "{{ANVIL_DIR}}/chemeleon_chembl/model.pth
     type: ChemPropModel
   split:
     params:
@@ -65,7 +64,7 @@ procedure:
     type: ShuffleSplitter
   train:
     params:
-      accelerator: gpu
+      accelerator: cpu
       early_stopping: true
       early_stopping_min_delta: 0.001
       early_stopping_mode: min

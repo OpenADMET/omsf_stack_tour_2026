@@ -1,7 +1,7 @@
 # Section specifying input data
 data:
   # Specify the dataset file, can be S3 path etc.
-  resource: ./ChEMBL35_Caco2_permeability_multitask_atob_btoa_logD_mppb_final.parquet
+  resource: "{{ANVIL_DIR}}/ChEMBL35_Caco2_permeability_multitask_atob_btoa_logD_mppb_final.parquet"
   # must be intake
   type: intake
   # Specify input column containing SMILES
