@@ -1,4 +1,4 @@
-name: oadmet_2026_demo
+name: oadmt_2026_demo
 channels:
   - conda-forge
 dependencies:
