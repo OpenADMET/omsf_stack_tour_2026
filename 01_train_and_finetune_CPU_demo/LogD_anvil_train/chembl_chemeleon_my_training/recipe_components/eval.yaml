@@ -1,0 +1,9 @@
+eval:
+- params: {}
+  type: RegressionMetrics
+- params:
+    axes_labels:
+    - True LogD
+    - Predicted LogD
+    title: Multitask True vs Predicted LogPapp on test set
+  type: RegressionPlots

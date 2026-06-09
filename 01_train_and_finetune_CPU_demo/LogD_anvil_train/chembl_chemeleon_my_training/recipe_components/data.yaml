@@ -1,0 +1,11 @@
+anvil_dir: file:///store/projects/OpenADMET/omsf_con_2026_demo/01_train_and_finetune/LogD_anvil_train
+cat_entry: null
+dropna: false
+input_col: OPENADMET_CANONICAL_SMILES
+resource: file:///store/projects/OpenADMET/omsf_con_2026_demo/01_train_and_finetune/LogD_anvil_train/logd_data.csv
+target_cols:
+- logD
+test_resource: null
+train_resource: null
+type: intake
+val_resource: null

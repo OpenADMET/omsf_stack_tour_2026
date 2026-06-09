@@ -1,0 +1,13 @@
+anvil_dir: file:///store/projects/OpenADMET/omsf_con_2026_demo/01_train_and_finetune/HLM_anvil_finetune
+cat_entry: null
+dropna: false
+input_col: OPENADMET_CANONICAL_SMILES
+resource: file:///store/projects/OpenADMET/omsf_con_2026_demo/01_train_and_finetune/HLM_anvil_finetune/chembl_Clint.csv
+target_cols:
+- LOG_CLint_HLM
+- LOG_CLint_RLM
+- LOG_CLint_MLM
+test_resource: null
+train_resource: null
+type: intake
+val_resource: null
