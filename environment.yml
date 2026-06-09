@@ -18,6 +18,7 @@ dependencies:
   - mordredcommunity
   - numpy
   - pandas
+  - pingouin
   - pip
   - python >= 3.12,<3.14
   - pytorch
@@ -25,11 +26,14 @@ dependencies:
   - rdkit
   - rich
   - scikit-learn
+  - scikit-posthocs
   - scipy
   - seaborn
   - splito
   - statsmodels
   - tabulate
+  - uncertainty-toolbox
+  - wandb
   - xgboost
   - zarr
   - pip:
