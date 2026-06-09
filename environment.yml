@@ -1,54 +1,48 @@
-name: oadmet_2026_demo
+name: oadmt_2026_demo
 channels:
   - conda-forge
 dependencies:
-  - ase
   - boto3
+  - catboost
   - chemprop >= 2.1.1
-  - codecov
   - datamol
   - h5py
   - hyperopt
   - intake
+  - ipykernel
   - intake-parquet
   - joblib
-  - jupyterlab
   - lightgbm
   - loguru
   - matplotlib
-  - mdanalysis
-  - modal
   - mordredcommunity
   - numpy
   - pandas
+  - pingouin
   - pip
   - python >= 3.12,<3.14
   - pytorch
-  - pytorch-lightning<=2.6.1
-  - pytest
-  - pytest-mock
-  - pytest-cov
-  - pytest-xdist
+  - pytorch-lightning
   - rdkit
   - rich
   - scikit-learn
+  - scikit-posthocs
+  - scipy
   - seaborn
   - splito
   - statsmodels
-  # - tabpfn
   - tabulate
-  - umap-learn
   - uncertainty-toolbox
+  - wandb
   - xgboost
-  - zarr >=3.0.0
+  - zarr
   - pip:
-    - catboost
+    - click
     - email-validator
     - phx-class-registry
     - tabpfn-extensions
     - git+https://github.com/PriorLabs/TabPFN.git@main
     - git+https://github.com/JacksonBurns/neural-pairwise-regression.git
     - git+https://github.com/OpenADMET/molfeat.git@main
-    - git+https://github.com/PatWalters/useful_rdkit_utils.git@master
+    - git+https://github.com/OpenADMET/openadmet-models.git@main
     - setuptools <82.0.0
-    - wandb < 0.26.0

@@ -1,0 +1,41 @@
+{
+  "tag": "chemprop",
+  "logD": {
+    "mse": {
+      "value": 0.9265683822418881,
+      "lower_ci": 0.8677703769798631,
+      "upper_ci": 0.9828569524877545,
+      "confidence_level": 0.95
+    },
+    "mae": {
+      "value": 0.7070989992669661,
+      "lower_ci": 0.6880285438313039,
+      "upper_ci": 0.7260907952510618,
+      "confidence_level": 0.95
+    },
+    "r2": {
+      "value": 0.6258916006392887,
+      "lower_ci": 0.6042596294440951,
+      "upper_ci": 0.6490347550133411,
+      "confidence_level": 0.95
+    },
+    "ktau": {
+      "value": 0.6063770090331708,
+      "lower_ci": 0.5928540410728866,
+      "upper_ci": 0.6199663582810678,
+      "confidence_level": 0.95
+    },
+    "spearmanr": {
+      "value": 0.7866086153005081,
+      "lower_ci": 0.7727839068568314,
+      "upper_ci": 0.8010147278158084,
+      "confidence_level": 0.95
+    },
+    "rae": {
+      "value": 0.5884979575773804,
+      "lower_ci": 0.5723645093742571,
+      "upper_ci": 0.6040369786001025,
+      "confidence_level": 0.95
+    }
+  }
+}

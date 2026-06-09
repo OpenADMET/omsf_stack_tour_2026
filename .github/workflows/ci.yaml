@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    # Run at 05:30 UTC every Monday
+    - cron: '30 5 * * 1'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Additional info about the build
+        shell: bash
+        run: |
+          uname -a
+          df -h
+          ulimit -a
+
+      - uses: mamba-org/setup-micromamba@v1
+        with:
+          environment-file: environment.yml
+          environment-name: oadmt_2026_demo
+          condarc: |
+            channels:
+              - conda-forge
+          create-args: >-
+            python=${{ matrix.python-version }}
+
+      - name: Install papermill and register kernel
+        shell: bash -l {0}
+        run: |
+          python -m pip install papermill
+          python -m ipykernel install --sys-prefix
+
+      - name: Run CPU demo notebook
+        shell: bash -l {0}
+        run: |
+          cd 01_train_and_finetune_CPU_demo
+          papermill 01_train_and_finetune.ipynb executed.ipynb \
+            --log-output \
+            --kernel python3 \
+            --execution-timeout 1200
+        continue-on-error: true
+
+      - name: Show cell errors from executed notebook
+        shell: bash -l {0}
+        run: |
+          python -c "
+          import json
+          with open('01_train_and_finetune_CPU_demo/executed.ipynb') as f:
+              nb = json.load(f)
+          print('=== Execution counts for all code cells ===')
+          for i, cell in enumerate(nb['cells']):
+              if cell['cell_type'] != 'code':
+                  continue
+              ec = cell.get('execution_count')
+              src = ''.join(cell['source'])[:60].replace('\n',' ')
+              outputs = cell.get('outputs', [])
+              out_types = [o.get('output_type') for o in outputs]
+              print(f'  cell[{i:2d}] exec={ec} outputs={out_types} src={repr(src)}')
+          print()
+          print('=== Cell errors ===')
+          for i, cell in enumerate(nb['cells']):
+              if cell['cell_type'] != 'code':
+                  continue
+              errors = [o for o in cell.get('outputs', []) if o.get('output_type') == 'error']
+              if errors:
+                  print(f'=== Cell [{i}] error ===')
+                  print('Source:', ''.join(cell['source'])[:200])
+                  for e in errors:
+                      print(e.get('ename'), ':', e.get('evalue'))
+                      print(''.join(e.get('traceback', [])))
+                  print()
+          "
+
+      - name: Fail if notebook had errors
+        shell: bash -l {0}
+        run: |
+          python -c "
+          import json, sys
+          with open('01_train_and_finetune_CPU_demo/executed.ipynb') as f:
+              nb = json.load(f)
+          errors = [c for c in nb['cells'] if any(o.get('output_type')=='error' for o in c.get('outputs',[]))]
+          if errors:
+              sys.exit(1)
+          "

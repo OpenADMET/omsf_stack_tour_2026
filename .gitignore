@@ -1,1 +1,3 @@
 .ipynb_checkpoints/
+*.ckpt
+*_dataloader.pth
