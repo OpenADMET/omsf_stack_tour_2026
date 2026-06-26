@@ -1,7 +1,6 @@
 # OpenADMET — OMSF Stack Tour 2026
 
 [![Logo](https://img.shields.io/badge/OSMF-OpenADMET-%23002f4a)](https://openadmet.org/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20604711.svg)](https://doi.org/10.5281/zenodo.20604711)
 
 Demo materials for the **OpenADMET** session at the [OMSF Stack Tour 2026](https://events.omsf.io/) — a one-day hands-on tutorial covering the open-source tools powering modern molecular science.
 
