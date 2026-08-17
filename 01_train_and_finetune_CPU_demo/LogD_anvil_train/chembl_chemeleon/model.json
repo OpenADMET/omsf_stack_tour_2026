@@ -1,6 +1,7 @@
 {
   "n_tasks": 5,
   "ffn_hidden_dim": 512,
+  "ffn_num_layers": 1,
   "batch_norm": false,
   "dropout": 0.25,
   "from_chemeleon": true,
